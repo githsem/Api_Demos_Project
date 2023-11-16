@@ -1,28 +1,29 @@
-package com.ourvirtualmarket.stepDefs;
+package com.example.cucumber;
 
-import com.ourvirtualmarket.utilities.Driver;
+import com.example.utils.Driver;
+import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.MobileElement;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
-import io.cucumber.java.Scenario;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
 
-import java.time.Duration;
+import java.util.concurrent.TimeUnit;
+
+import static com.example.utils.App.API_Demos;
+import static com.example.utils.Device.Pixel_2;
+import static com.example.utils.MobileUtilities.openApp;
 
 public class Hooks {
 
+    protected AppiumDriver<MobileElement> driver;
+
     @Before
     public void setUp() {
-        Driver.get().manage().window().maximize();
-        Driver.get().manage().timeouts().implicitlyWait(Duration.ofSeconds(7));
+        driver = openApp(Pixel_2, API_Demos);
+        driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
     }
 
     @After
-    public void tearDown(Scenario scenario) {
-        if (scenario.isFailed()) {
-            final byte[] screenshot = ((TakesScreenshot) Driver.get()).getScreenshotAs(OutputType.BYTES);
-            scenario.attach(screenshot, "image/png", "screenshot");
-        }
-        Driver.closeDriver();
+    public void tearDown() {
+        Driver.getDriver().closeApp();
     }
 }
