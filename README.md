@@ -1,7 +1,7 @@
 # Api Demos Project
 
 
-This is a Java-based project for testing mobile applications using Appium, Selenium, Cucumber, and TestNG.
+This is a Java-based project for testing mobile applications using Appium, Selenium, Cucumber and TestNG.
 
 ## Table of Contents
 - [Overview](#overview)
