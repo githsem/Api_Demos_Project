@@ -12,7 +12,7 @@ public class Driver {
     static AppiumDriverLocalService service;
     private static AppiumDriver<MobileElement> driver;
 
-    public static void runAppiumService(){
+    public static void runAppiumService() {
         service = new AppiumServiceBuilder()
                 .withIPAddress("127.0.0.1")
                 //.usingPort(4723)
@@ -24,36 +24,36 @@ public class Driver {
         service.start();
     }
 
-    public static void stopAppiumService(){
+    public static void stopAppiumService() {
         service.stop();
     }
 
-    public static AppiumDriver<MobileElement> getDriver(Device device, App app){
+    public static AppiumDriver<MobileElement> getDriver(Device device, App app) {
         driver = new AndroidDriver<>(service.getUrl(), setCapabilities(device, app));
         return driver;
     }
 
-    private static DesiredCapabilities setCapabilities(Device device, App app){
+    private static DesiredCapabilities setCapabilities(Device device, App app) {
         DesiredCapabilities capabilities = new DesiredCapabilities();
 
-        String apk = "src/main/resources/" + app.appZipFile;
+        //String apk = "src/main/resources/" + app.appZipFile;
 
-        capabilities.setCapability("appium:udid",device.udid);
-        capabilities.setCapability("appium:version",device.version);
-        capabilities.setCapability("appium:deviceName",device.deviceName);
-        capabilities.setCapability("platformName",device.platformName);
+        capabilities.setCapability("appium:udid", device.udid);
+        capabilities.setCapability("appium:version", device.version);
+        capabilities.setCapability("appium:deviceName", device.deviceName);
+        capabilities.setCapability("platformName", device.platformName);
 
-        if (app.appZipFile.length()!=0){
-            capabilities.setCapability("appium:app",apk);
-        }
+        //if (app.appZipFile.length()!=0){
+        //capabilities.setCapability("appium:app",apk);
+        //}
 
-        capabilities.setCapability("appium:appPackage",app.appPackage);
-        capabilities.setCapability("appium:appActivity",app.appActivity);
+        capabilities.setCapability("appium:appPackage", app.appPackage);
+        capabilities.setCapability("appium:appActivity", app.appActivity);
 
         return capabilities;
     }
 
-    public static AppiumDriver<MobileElement> getDriver(){
+    public static AppiumDriver<MobileElement> getDriver() {
         return driver;
     }
 }
