@@ -5,9 +5,7 @@ import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
-
 import java.util.concurrent.TimeUnit;
-
 import static com.example.utils.App.API_Demos;
 import static com.example.utils.Device.Pixel_2;
 import static com.example.utils.MobileUtilities.openApp;
